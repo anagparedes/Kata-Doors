@@ -23,32 +23,61 @@ namespace KataDoor
         [TestMethod]
         public void TestClosedDoor()
         {
-            var someDoor = Door.OpenAndUncloked("someStrongKey");
+            var someDoor = Door.ClosedAndLocked("someStrongKey");
             string result =Door.Close(someDoor);
             Assert.AreEqual("Closed", result);
         }
+        [TestMethod]
+        public void TestClosedDoorFailed()
+        {
+            var someDoor = Door.ClosedAndLocked("someStrongKey");
+            string result = Door.Close(someDoor);
+            Assert.AreEqual("Opened", result);
+        }
+        [TestMethod]
+        public void TestOpenedDoor()
+        {
+            var someDoor = Door.OpenAndUncloked("someStrongKey");
+            string result = Door.Open(someDoor);
+            Assert.AreEqual("Opened", result);
+        }
+        [TestMethod]
+        public void TestOpenedDoorFailed()
+        {
+            var someDoor = Door.OpenAndUncloked("someStrongKey");
+            string result = Door.Open(someDoor);
+            Assert.AreEqual("Closed", result);
+        }
+        [TestMethod]
+        public void TestLockedDoor()
+        {
+            var someDoor = Door.OpenAndLocked("someStrongKey");
+            string result = Door.Lock(someDoor);
+            Assert.AreEqual("Locked", result);
+        }
+        [TestMethod]
+        public void TestLockedDoorFailed()
+        {
+            var someDoor = Door.OpenAndLocked("someStrongKey");
+            string result = Door.Lock(someDoor);
+            Assert.AreEqual("Unlocked", result);
+        }
+        [TestMethod]
+        public void TestUnLockedDoor()
+        {
+            var someDoor = Door.OpenAndUncloked("someStrongKey");
+            string result = Door.Unlock(someDoor);
+            Assert.AreEqual("Unlocked", result);
+        }
+        [TestMethod]
+        public void TestUnLockedDoorFailed()
+        {
+            var someDoor = Door.OpenAndUncloked("someStrongKey");
+            string result = Door.Unlock(someDoor);
+            Assert.AreEqual("Locked", result);
+        }
+
 
     }
-
-    //[TestClass]
-    //public class Locked : Door
-    //{
-    //    public bool IsLocked { get; }
-
-    //    [TestMethod]
-    //    public bool TestIsLocked()
-    //    {
-
-    //        if (IsLocked)
-    //        {
-    //            return true;
-    //        }
-    //        else
-    //            return false;
-    //    }
-
-    //}
-    
-
 
 }
